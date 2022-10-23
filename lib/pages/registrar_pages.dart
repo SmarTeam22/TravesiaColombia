@@ -11,14 +11,14 @@ class _RegistrarPageState extends State<RegistrarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 120, horizontal: 40),
-        child: Center(
-          //'SingleChildScrollView' Para que no aparezca el cuadro amarillo con rayas
-          child: SingleChildScrollView(
-            child:Column(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 40),
+          child: Center(
+            //'SingleChildScrollView' Para que no aparezca el cuadro amarillo con rayas
+            child: Column(
               children: [
-                const Image(image: AssetImage("assets/images/logo.png"), width: 100, height: 100),
+                const Image(image: AssetImage("assets/images/logo.png"), width: 120, height: 120),
                 const SizedBox(height: 20),
 
                 TextFormField(
