@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travesia_colombia2022/pages/registrar_pages.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -50,7 +51,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const RegistrarPage()));
+                  },
                   child: const Text("Registrarse",
                       style: TextStyle(
                           fontStyle: FontStyle.italic,
