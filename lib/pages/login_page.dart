@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:travesia_colombia2022/pages/turistico_poi.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  final email = "Correo@gmail.com";
+  final password = "123";
+
+  void validacionUsuario(){
+
+  }
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -43,7 +51,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => TuristicoPOIPage()));
+                  },
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Text("Ingresar", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
