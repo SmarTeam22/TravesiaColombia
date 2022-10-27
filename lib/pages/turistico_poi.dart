@@ -9,27 +9,53 @@ class TuristicoPOIPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: const Text("Detalles de Travesia Colombia"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text("Travesia Colombia", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 20,),
-            const Image(image: AssetImage("assets/images/img.png"), width: 200,height: 200,),
-            const SizedBox(height: 25,),
-
-            Column(
-              children: [
-                Text("Ciudad: ${ciudad}"),
-                Text("Ciudad: ${depa}"),
-                Text("Ciudad: ${temp}")
-              ],
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                  child: Column(
+                children: const [
+                  Text("Travesia Colombia",
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Image(
+                    image: AssetImage("assets/images/img.png"),
+                    width: 200,
+                    height: 200,
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                ],
+              )),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Ciudad: ${ciudad}", style: TextStyle(fontSize: 16)),
+                    Text("Ciudad: ${depa}", style: TextStyle(fontSize: 16)),
+                    Text("Ciudad: ${temp}", style: TextStyle(fontSize: 16)),
+                    SizedBox(height: 15,),
+                    Text("Descripción del sitio Turistico a investigar", style: TextStyle(fontSize: 16)),
+                    SizedBox(height: 15,),
+                    Text("Otra información de interes.", style: TextStyle(fontSize: 16))
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

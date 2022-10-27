@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
     if(email.text.isNotEmpty && password.text.isNotEmpty){
       if(email.text=="ejemplo@gmail.com"){
         if(password.text=='123'){
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const RegistrarPage()));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> TuristicoPOIPage()));
         }else{
           mostrarMensaje('Password incorrecto');
         }
