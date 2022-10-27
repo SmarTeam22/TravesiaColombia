@@ -26,7 +26,7 @@ class TuristicoPOIPage extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                   SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   Image(
                     image: AssetImage("assets/images/img.png"),
@@ -34,7 +34,7 @@ class TuristicoPOIPage extends StatelessWidget {
                     height: 200,
                   ),
                   SizedBox(
-                    height: 25,
+                    height: 35,
                   ),
                 ],
               )),
