@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "779272285919",
+    "project_id": "minticciclo4-29b43",
+    "storage_bucket": "minticciclo4-29b43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779272285919:android:8826c67b95fcc4e3cb836a",
+        "android_client_info": {
+          "package_name": "com.udea.travesia_colombia2022"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779272285919-h3e2996v86j5jnk117h616gnq7p5mmc2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3vx1GTf0Ww3mC4JT7W-sa0yoX8vMWcUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779272285919-h3e2996v86j5jnk117h616gnq7p5mmc2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
