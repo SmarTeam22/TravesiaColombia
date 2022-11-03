@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:travesia_colombia2022/pages/home_page.dart';
 import 'package:travesia_colombia2022/pages/registrar_pages.dart';
 import 'package:travesia_colombia2022/pages/turistico_poi.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final email = TextEditingController();
   final password = TextEditingController();
+  FirebaseAuth auth=FirebaseAuth.instance;
 
   void mostrarMensaje(String mensaje) {
     final pantalla = ScaffoldMessenger.of(context);
@@ -30,20 +32,15 @@ class _LoginPageState extends State<LoginPage> {
     ));
   }
 
-  void validacionUsuario() {
-    if (email.text.isNotEmpty && password.text.isNotEmpty) {
-      if (email.text == "ejemplo@gmail.com") {
-        if (password.text == '123') {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => HomePage()));
-        } else {
-          mostrarMensaje('Password incorrecto');
-        }
-      } else {
-        mostrarMensaje('Usuario no Registrado');
-      }
-    } else {
-      mostrarMensaje('Datos Obligatorios');
+  void validacionUsuario() async {
+    try {
+    final user = await auth.signInWithEmailAndPassword(email: email.text, password: password.text);
+    if (user != null){
+      mostrarMensaje("----BIENVENIDO-----");
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomePage()));
+    }
+  }on FirebaseAuthException catch(e){
+      mostrarMensaje(e.code);
     }
   }
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travesia_colombia2022/pages/login_page.dart';
+import 'package:travesia_colombia2022/repositorio/usuario_registrar.dart';
 
 class RegistrarPage extends StatefulWidget {
   const RegistrarPage({Key? key}) : super(key: key);
@@ -8,6 +10,16 @@ class RegistrarPage extends StatefulWidget {
 }
 
 class _RegistrarPageState extends State<RegistrarPage> {
+  final email=TextEditingController();
+  final password=TextEditingController();
+  final confirm_password=TextEditingController();
+  Usuario_Registrar usuario = Usuario_Registrar();
+
+  void guardarUsuario() async{
+    bool resultado = await usuario.registrarUsuario(email.text, password.text);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +34,7 @@ class _RegistrarPageState extends State<RegistrarPage> {
                 const SizedBox(height: 20),
 
                 TextFormField(
+                  controller: email,
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                     labelText: "Email",
@@ -32,6 +45,7 @@ class _RegistrarPageState extends State<RegistrarPage> {
                 const SizedBox(height: 20),
 
                 TextFormField(
+                  controller: password,
                   obscureText: true,
                   decoration: const InputDecoration(
                     labelText: "Contraseña",
@@ -42,6 +56,7 @@ class _RegistrarPageState extends State<RegistrarPage> {
                 const SizedBox(height: 20),
 
                 TextFormField(
+                  controller: confirm_password ,
                   obscureText: true,
                   decoration: const InputDecoration(
                     labelText: "Confirmar Contraseña",
@@ -52,7 +67,9 @@ class _RegistrarPageState extends State<RegistrarPage> {
                 const SizedBox(height: 20),
 
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    guardarUsuario();
+                  },
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Text("Registrar", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
