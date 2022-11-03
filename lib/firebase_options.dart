@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD3vx1GTf0Ww3mC4JT7W-sa0yoX8vMWcUM',
-    appId: '1:779272285919:android:8826c67b95fcc4e3cb836a',
-    messagingSenderId: '779272285919',
-    projectId: 'minticciclo4-29b43',
-    storageBucket: 'minticciclo4-29b43.appspot.com',
+    apiKey: 'AIzaSyBcRpP3iZS7fXFxSkz58EZLiOeS6-XSz6Y',
+    appId: '1:161085307860:android:5f32545e14909dad087441',
+    messagingSenderId: '161085307860',
+    projectId: 'travesia-colombia',
+    storageBucket: 'travesia-colombia.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyClYno465BhxaSablZJGoC3gvj7rjepXic',
-    appId: '1:779272285919:ios:f7e5d2101e70ca2fcb836a',
-    messagingSenderId: '779272285919',
-    projectId: 'minticciclo4-29b43',
-    storageBucket: 'minticciclo4-29b43.appspot.com',
-    iosClientId: '779272285919-v9c1gm7318qioeib9csv5ldreiqfgghq.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAtNszYr00f7VzX8i6R1u6XYz90FLRvLyA',
+    appId: '1:161085307860:ios:ad27dee9c8f17394087441',
+    messagingSenderId: '161085307860',
+    projectId: 'travesia-colombia',
+    storageBucket: 'travesia-colombia.appspot.com',
+    iosClientId: '161085307860-00knrb4il1ipcnl9qel52vol3l5120cm.apps.googleusercontent.com',
     iosBundleId: 'com.udea.travesiaColombia2022',
   );
 }

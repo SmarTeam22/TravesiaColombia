@@ -12,7 +12,7 @@ class RegistrarPage extends StatefulWidget {
 class _RegistrarPageState extends State<RegistrarPage> {
   final email=TextEditingController();
   final password=TextEditingController();
-  final confirm_password=TextEditingController();
+  final confirPassword=TextEditingController();
   Usuario_Registrar usuario = Usuario_Registrar();
   late final mensaje msj;
 
@@ -29,7 +29,7 @@ class _RegistrarPageState extends State<RegistrarPage> {
       msj.mostrarMensaje("Revisar conexión a internet");
     }else{
       Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
-      msj.mostrarMensaje("Usuario añadido exitosamente!");
+      msj.mostrarMensaje("Usuario registrado correctamente!");
     }
   }
 
@@ -71,7 +71,7 @@ class _RegistrarPageState extends State<RegistrarPage> {
                 const SizedBox(height: 20),
 
                 TextFormField(
-                  controller: confirm_password ,
+                  controller: confirPassword ,
                   obscureText: true,
                   decoration: const InputDecoration(
                     labelText: "Confirmar Contraseña",
