@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travesia_colombia2022/pages/home_page.dart';
 import 'package:travesia_colombia2022/pages/registrar_pages.dart';
 import 'package:travesia_colombia2022/pages/turistico_poi.dart';
 
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
       if (email.text == "ejemplo@gmail.com") {
         if (password.text == '123') {
           Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => TuristicoPOIPage()));
+              MaterialPageRoute(builder: (context) => HomePage()));
         } else {
           mostrarMensaje('Password incorrecto');
         }
