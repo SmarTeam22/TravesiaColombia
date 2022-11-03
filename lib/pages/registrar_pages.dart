@@ -14,14 +14,29 @@ class _RegistrarPageState extends State<RegistrarPage> {
   final password=TextEditingController();
   final confirm_password=TextEditingController();
   Usuario_Registrar usuario = Usuario_Registrar();
+  late final mensaje msj;
 
   void guardarUsuario() async{
-    bool resultado = await usuario.registrarUsuario(email.text, password.text);
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+    var resul = await usuario.registrarUsuario(email.text, password.text);
+
+    if(resul=="invalid-email"){
+      msj.mostrarMensaje("Formato de email incorrecto");
+    }else if(resul=="weak-password"){
+      msj.mostrarMensaje("La contraseña debe tener mínimo 6 caracteres");
+    }else if(resul=="unknown"){
+      msj.mostrarMensaje("Por favor llenar los campos vacíos");
+    }else if(resul=="network-request-failed"){
+      msj.mostrarMensaje("Revisar conexión a internet");
+    }else{
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+      msj.mostrarMensaje("Usuario añadido exitosamente!");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    msj=mensaje(context);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(

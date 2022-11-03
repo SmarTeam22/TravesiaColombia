@@ -15,44 +15,42 @@ class _LoginPageState extends State<LoginPage> {
   final email = TextEditingController();
   final password = TextEditingController();
   FirebaseAuth auth=FirebaseAuth.instance;
+  late final mensaje msj;
 
-  void mostrarMensaje(String mensaje) {
-    final pantalla = ScaffoldMessenger.of(context);
-    pantalla.showSnackBar(SnackBar(
-      content: Text(
-        mensaje,
-        style: const TextStyle(
-          color: Colors.black,
-          fontStyle: FontStyle.italic,
-          fontSize: 20,
-        ),
-      ),
-      backgroundColor: Colors.cyan,
-      duration: const Duration(seconds: 5),
-    ));
-  }
 
   void validacionUsuario() async {
     try {
     final user = await auth.signInWithEmailAndPassword(email: email.text, password: password.text);
     if (user != null){
-      mostrarMensaje("----BIENVENIDO-----");
+      msj.mostrarMensaje("----BIENVENIDO-----");
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomePage()));
     }
   }on FirebaseAuthException catch(e){
-      mostrarMensaje(e.code);
+      if(e.code=="invalid-email"){
+        msj.mostrarMensaje("Formato de email incorrecto");
+      }else if(e.code=="user-not-found"){
+        msj.mostrarMensaje("Usuario no registrado");
+      }else if(e.code=="wrong-password"){
+        msj.mostrarMensaje("Contraseña incorrecta");
+      }else if(e.code=="unknown"){
+        msj.mostrarMensaje("Por favor llenar los campos vacíos");
+      }else if(e.code=="network-request-failed"){
+        msj.mostrarMensaje("Revisar conexión a internet");
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    msj = mensaje(context);
+
     return Scaffold(
         backgroundColor: Colors.white,
         body: Center(
           child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/fondo.png"),
+                image: AssetImage("assets/images/fond.jpg"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -139,5 +137,28 @@ class _LoginPageState extends State<LoginPage> {
             ),
 
         );
+  }
+}
+
+class mensaje{
+
+  late BuildContext context;
+
+  mensaje(this.context);
+
+  void mostrarMensaje(String mensaje) {
+  final pantalla = ScaffoldMessenger.of(context);
+  pantalla.showSnackBar(SnackBar(
+  content: Text(
+  mensaje,
+  style: const TextStyle(
+  color: Colors.black,
+  fontStyle: FontStyle.italic,
+  fontSize: 20,
+  ),
+  ),
+  backgroundColor: Colors.cyan,
+  duration: const Duration(seconds: 5),
+  ));
   }
 }
