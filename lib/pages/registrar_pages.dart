@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travesia_colombia2022/model/usuario_model.dart';
 import 'package:travesia_colombia2022/pages/login_page.dart';
 import 'package:travesia_colombia2022/repositorio/usuario_registrar.dart';
 
@@ -10,28 +11,61 @@ class RegistrarPage extends StatefulWidget {
 }
 
 class _RegistrarPageState extends State<RegistrarPage> {
+
+  final nombreUsuario=TextEditingController();
   final email=TextEditingController();
   final password=TextEditingController();
   final confirPassword=TextEditingController();
+
   Usuario_Registrar usuario = Usuario_Registrar();
-  late final mensaje msj;
+  late mensaje msj;
 
-  void guardarUsuario() async{
-    var resul = await usuario.registrarUsuario(email.text, password.text);
+  void guardarUsuario(Usuario nuevoUsuario) async{
+    var result = await usuario.registrarUsuario(email.text, password.text);
 
-    if(resul=="invalid-email"){
+
+    if(result=="invalid-email"){
       msj.mostrarMensaje("Formato de email incorrecto");
-    }else if(resul=="weak-password"){
+    }else if(result=="weak-password"){
       msj.mostrarMensaje("La contraseña debe tener mínimo 6 caracteres");
-    }else if(resul=="unknown"){
+    }else if(result=="unknown"){
       msj.mostrarMensaje("Por favor llenar los campos vacíos");
-    }else if(resul=="network-request-failed"){
+    }else if(result=="network-request-failed"){
       msj.mostrarMensaje("Revisar conexión a internet");
     }else{
-      Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+      nuevoUsuario.id = result;
+      registrarUsuario(nuevoUsuario);
       msj.mostrarMensaje("Usuario registrado correctamente!");
     }
   }
+
+  void registrarUsuario(Usuario nuevoUsuario) async{
+    //aqui me guarda en la bd
+    var id= await usuario.crearUsuario(nuevoUsuario);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+  }
+
+  void traerDatos(){
+
+    setState(() {
+      //aqui se recogen los datos
+      if(nombreUsuario.text.isNotEmpty && email.text.isNotEmpty && password.text.isNotEmpty && confirPassword.text.isNotEmpty){
+        if(password.text==confirPassword.text){
+
+          var nuevoUsuario = Usuario("", nombreUsuario.text, email.text, password.text);
+          guardarUsuario(nuevoUsuario);
+
+        }else{
+          msj.mostrarMensaje("Las contraseñas no coinciden");
+        }
+      }else{
+        msj.mostrarMensaje("Por favor llenar todos los campos");
+      }
+
+    });
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +80,18 @@ class _RegistrarPageState extends State<RegistrarPage> {
             child: Column(
               children: [
                 const Image(image: AssetImage("assets/images/logo.png"), width: 120, height: 120),
+                const SizedBox(height: 20),
+
+                TextFormField(
+                  controller: nombreUsuario,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    labelText: "Nombre de usuario",
+                    border: OutlineInputBorder(),
+                    suffixIcon: Icon(Icons.person),
+                  ),
+                ),
+
                 const SizedBox(height: 20),
 
                 TextFormField(
@@ -83,7 +129,7 @@ class _RegistrarPageState extends State<RegistrarPage> {
 
                 ElevatedButton(
                   onPressed: () {
-                    guardarUsuario();
+                    traerDatos();
                   },
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15),
