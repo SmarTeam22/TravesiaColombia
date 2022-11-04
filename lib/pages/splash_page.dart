@@ -13,8 +13,8 @@ class _SplashPageState extends State<SplashPage> {
   //FUNCIONES:
   void initState(){
     //Cuando inicie pantalla
-    cambiarPage();
-    super.initState();
+   cambiarPage();
+   super.initState();
   }
 
   Future<void> cambiarPage() async {
@@ -26,10 +26,19 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xCFB6E1C3),
+      body: Center(
+      child: CircleAvatar(
+        backgroundImage: AssetImage('assets/images/fondo.png'),
+        radius: 270,
+        backgroundColor: Colors.transparent,
+      ),  
+      ),
+    );
+   
+     /* backgroundColor: Colors.white,
         body: Center(
           child: Image(image: AssetImage("assets/images/travesia.png"), width: 300, height: 300,),
-        )
-    );
+        )*/
   }
 }
