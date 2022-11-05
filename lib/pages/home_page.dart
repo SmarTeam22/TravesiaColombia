@@ -17,9 +17,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Sitios Turisticos",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold)),
+          title: const Text("Sitios Turisticos Leticia",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold)),
           bottom: const TabBar(
-            tabs:
+              tabs:
               [
                 Tab(child: Text("TODOS",style: TextStyle(fontSize: 16))),
                 Tab(child: Text("FAVORITOS",style: TextStyle(fontSize: 16)))
