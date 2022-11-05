@@ -9,54 +9,71 @@ class TuristicoPOIPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Detalles de Travesia Colombia"),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
+    return StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('Lugares').snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const Center(
+                child: Text("Cargando", style: TextStyle(fontSize: 18, color: Colors.black),));
+          } else {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text("Detalles"),
+              ),
+              body: SingleChildScrollView(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                   child: Column(
-                children: const [
-                  Text("Travesia Colombia",
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Image(
-                    image: AssetImage("assets/images/img.png"),
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        child: Column(
+                          children: [
+                            Text(titulo,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
+                            ),
 
+                            const SizedBox( height: 30),
+
+                            Image(image: NetworkImage(foto)),
+
+                            const SizedBox(height: 35),
+                          ],
+                        ),
+                      ),
+
+                      Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 25),
+                          width: double.infinity,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  const Icon(Icons.fmd_good_outlined, color: Colors.blueAccent),
+                                  Text(ciudad),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  const Icon(Icons.star_border_purple500, color: Colors.amber),
+                                  Text("Puntuación: ${calificacion.toString()}"),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              Text(descripcion, textAlign: TextAlign.justify)
+                            ],
+                          )
+                      ),
+
+                    ],
                   ),
-                  SizedBox(
-                    height: 35,
-                  ),
-                ],
-              )),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Ciudad: ${ciudad}", style: TextStyle(fontSize: 16)),
-                    Text("Ciudad: ${depa}", style: TextStyle(fontSize: 16)),
-                    Text("Ciudad: ${temp}", style: TextStyle(fontSize: 16)),
-                    SizedBox(height: 15,),
-                    Text("Descripción del sitio Turistico a investigar", style: TextStyle(fontSize: 16)),
-                    SizedBox(height: 15,),
-                    Text("Otra información de interes.", style: TextStyle(fontSize: 16))
-                  ],
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
+            );
+          }
+        }
     );
   }
-}
