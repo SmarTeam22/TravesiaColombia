@@ -33,7 +33,7 @@ class _TodosScreenState extends State<TodosScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => TuristicoPOIPage(lugares['titulo'],lugares['foto'],lugares['calificacion'],lugares['descripcion'])));
+                                  builder: (context) => TuristicoPOIPage(lugares['foto'],lugares['titulo'],lugares['calificacion'],lugares['descripcion'])));
                         },
                         child: Column(
                           children: [
