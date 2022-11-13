@@ -24,6 +24,10 @@ class TuristicoPOIPage extends StatelessWidget {
   var depa = "Bolivar";
   var temp = "28ºC";
 
+  void _onFavoriteButton(){
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -37,6 +41,17 @@ class TuristicoPOIPage extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 title: const Text("Detalles"),
+                actions: [
+                  IconButton(
+                      onPressed: (){
+                        _onFavoriteButton();
+                      },
+                      icon: const Icon(Icons.favorite_border_outlined,size: 30,),
+                    color: Colors.white,
+                  )
+                ],
+                automaticallyImplyLeading: true,
+
               ),
               body: SingleChildScrollView(
                 child: Container(
@@ -86,15 +101,34 @@ class TuristicoPOIPage extends StatelessWidget {
                                 ],
                               ),
                               const SizedBox(height: 20),
-                              Text(descripcion, textAlign: TextAlign.justify)
+                              Text(descripcion, textAlign: TextAlign.justify),
+                              const SizedBox(height: 60)
                             ],
-                          )
-                      ),
 
+                          ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  // Standard IconButton
+                                  children: const <Widget>[
+
+                                  ]),
+                        ],
+                      )
                     ],
                   ),
                 ),
               ),
+              floatingActionButton: FloatingActionButton(
+                  backgroundColor: const Color(0x13313130),
+                  elevation: 0,
+                  onPressed: (){},
+                  child: const Image(
+                      image: AssetImage("assets/images/pin.png"))),
+
             );
           }
         }

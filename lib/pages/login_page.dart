@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travesia_colombia2022/pages/home_page.dart';
 import 'package:travesia_colombia2022/pages/registrar_pages.dart';
-import 'package:travesia_colombia2022/pages/turistico_poi.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -87,6 +86,8 @@ class _LoginPageState extends State<LoginPage> {
                             labelText: "Email",
                             border: OutlineInputBorder(),
                             suffixIcon: Icon(Icons.email),
+
+
                           ),
                         ),
                         const SizedBox(height: 20),
