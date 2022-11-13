@@ -34,6 +34,24 @@ class _TuristicoPOIPageState extends State<TuristicoPOIPage> {
 
   var temp = "28ºC";
 
+  var isFavorite = false;
+
+
+  @override
+  void initState() {
+    _getLocalLugares();
+    super.initState();
+  }
+
+  void _getLocalLugares() {
+    final box = Boxes.getFavoriteBox();
+    box.values.forEach((element) {
+      if (element.titulo == titulo){
+        isFavorite = true;
+      }
+    });
+  }
+
   void _onFavoriteButton() async{
     var localLugares = LocalLugares()
         ..foto = foto
@@ -42,7 +60,17 @@ class _TuristicoPOIPageState extends State<TuristicoPOIPage> {
         ..descripcion = descripcion;
 
     final box = Boxes.getFavoriteBox();
-    box.add(localLugares);
+   //box.add(localLugares);
+
+    if (isFavorite){
+      box.delete(localLugares.titulo);
+    } else {
+      box.put(localLugares.titulo, localLugares);
+    }
+
+    setState(() {
+      isFavorite = !isFavorite;
+    });
 
   }
 
@@ -64,7 +92,7 @@ class _TuristicoPOIPageState extends State<TuristicoPOIPage> {
                       onPressed: (){
                         _onFavoriteButton();
                       },
-                      icon: const Icon(Icons.favorite_border_outlined,size: 30,),
+                      icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border,size: 30,),
                     color: Colors.white,
                   )
                 ],

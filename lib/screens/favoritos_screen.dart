@@ -57,7 +57,7 @@ class _FavoritosScreenState extends State<FavoritosScreen> {
                                 subtitle: Container(
                                   padding: const EdgeInsets.only(top: 5.0),
                                   child: Text(lugar.descripcion!, style: const TextStyle(color: Colors.grey, fontSize: 15.0),overflow: TextOverflow.ellipsis, maxLines: 2),
-                                )
+                                ),
                             ),
 
                           ],
