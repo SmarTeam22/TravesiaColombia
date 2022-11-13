@@ -6,7 +6,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter/src/material/theme_data.dart';
 
-void main() async {
+import 'model/local_lugares_model.dart';
+
+Future<void> main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -14,6 +16,9 @@ void main() async {
   );
 
   await Hive.initFlutter();
+  Hive.registerAdapter(LocalLugaresAdapter());
+
+  await Hive.openBox<LocalLugares>('favorites');
 
   runApp(const MyApp());
 }

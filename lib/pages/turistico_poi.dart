@@ -1,30 +1,48 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:travesia_colombia2022/boxes.dart';
+import 'package:travesia_colombia2022/model/local_lugares_model.dart';
 
-class TuristicoPOIPage extends StatelessWidget {
+class TuristicoPOIPage extends StatefulWidget {
 
-  late final String _titulo;
+
   late final String _foto;
+  late final String _titulo;
   late final double _calificacion;
   late final String _descripcion;
 
 
-  String get titulo => _titulo;
-
-  String get foto => _foto;
-
-  double get calificacion => _calificacion;
-
-  String get descripcion => _descripcion;
-
   TuristicoPOIPage(this._foto, this._titulo, this._calificacion,
       this._descripcion, {Key? key}) : super(key: key);
 
+  @override
+  State<TuristicoPOIPage> createState() => _TuristicoPOIPageState();
+}
+
+class _TuristicoPOIPageState extends State<TuristicoPOIPage> {
+  String get titulo => widget._titulo;
+
+  String get foto => widget._foto;
+
+  double get calificacion => widget._calificacion;
+
+  String get descripcion => widget._descripcion;
+
   var ciudad = "Leticia";
+
   var depa = "Bolivar";
+
   var temp = "28ºC";
 
-  void _onFavoriteButton(){
+  void _onFavoriteButton() async{
+    var localLugares = LocalLugares()
+        ..foto = foto
+        ..titulo = titulo
+        ..calificacion = calificacion
+        ..descripcion = descripcion;
+
+    final box = Boxes.getFavoriteBox();
+    box.add(localLugares);
 
   }
 
