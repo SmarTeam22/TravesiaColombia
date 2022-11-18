@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:travesia_colombia2022/boxes.dart';
 import 'package:travesia_colombia2022/model/local_lugares_model.dart';
+import 'package:travesia_colombia2022/detail_place_page.dart';
+import 'package:travesia_colombia2022/model/store.dart';
+import 'package:travesia_colombia2022/pages/detail_place_page.dart';
 
 class TuristicoPOIPage extends StatefulWidget {
 
@@ -35,6 +38,8 @@ class _TuristicoPOIPageState extends State<TuristicoPOIPage> {
   var temp = "28ºC";
 
   var isFavorite = false;
+
+  QueryDocumentSnapshot<Object?>? get store => null;
 
 
   @override
@@ -171,7 +176,9 @@ class _TuristicoPOIPageState extends State<TuristicoPOIPage> {
               floatingActionButton: FloatingActionButton(
                   backgroundColor: const Color(0x13313130),
                   elevation: 0,
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPlacePage()));
+                  },
                   child: const Image(
                       image: AssetImage("assets/images/pin.png"))),
 
