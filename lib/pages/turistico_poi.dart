@@ -42,6 +42,8 @@ class _TuristicoPOIPageState extends State<TuristicoPOIPage> {
 
   var isFavorite = false;
 
+  QueryDocumentSnapshot<Object?>? get store => null;
+
 
   @override
   void initState() {
@@ -63,7 +65,9 @@ class _TuristicoPOIPageState extends State<TuristicoPOIPage> {
         ..foto = foto
         ..titulo = titulo
         ..calificacion = calificacion
-        ..descripcion = descripcion;
+        ..descripcion = descripcion
+        ..latitud = latitud
+        ..longitud = longitud;
 
     final box = Boxes.getFavoriteBox();
    //box.add(localLugares);
@@ -87,7 +91,7 @@ class _TuristicoPOIPageState extends State<TuristicoPOIPage> {
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const Center(
-                child: Text("Cargando",
+                child: Text("",
                   style: TextStyle(fontSize: 18, color: Colors.black),));
           } else {
             return Scaffold(
