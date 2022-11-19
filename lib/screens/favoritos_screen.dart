@@ -44,7 +44,7 @@ class _FavoritosScreenState extends State<FavoritosScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => TuristicoPOIPage(lugar.foto!,lugar.titulo ?? "No title",lugar.calificacion!,lugar.descripcion!)));
+                                  builder: (context) => TuristicoPOIPage(lugar.foto!,lugar.titulo ?? "No title",lugar.calificacion!,lugar.descripcion!, lugar.latitud!, lugar.longitud!)));
                         },
                         child: Column(
                           children: [

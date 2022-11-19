@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:travesia_colombia2022/boxes.dart';
 import 'package:travesia_colombia2022/model/local_lugares_model.dart';
 import 'package:travesia_colombia2022/detail_place_page.dart';
@@ -13,23 +14,25 @@ class TuristicoPOIPage extends StatefulWidget {
   late final String _titulo;
   late final double _calificacion;
   late final String _descripcion;
+  late final double _latitud;
+  late final double _longitud;
 
 
   TuristicoPOIPage(this._foto, this._titulo, this._calificacion,
-      this._descripcion, {Key? key}) : super(key: key);
+      this._descripcion, this._latitud, this._longitud, {Key? key}) : super(key: key);
 
   @override
   State<TuristicoPOIPage> createState() => _TuristicoPOIPageState();
 }
 
 class _TuristicoPOIPageState extends State<TuristicoPOIPage> {
+
   String get titulo => widget._titulo;
-
   String get foto => widget._foto;
-
   double get calificacion => widget._calificacion;
-
   String get descripcion => widget._descripcion;
+  double get latitud => widget._latitud;
+  double get longitud => widget._longitud;
 
   var ciudad = "Leticia";
 
@@ -38,8 +41,6 @@ class _TuristicoPOIPageState extends State<TuristicoPOIPage> {
   var temp = "28ºC";
 
   var isFavorite = false;
-
-  QueryDocumentSnapshot<Object?>? get store => null;
 
 
   @override
@@ -177,7 +178,7 @@ class _TuristicoPOIPageState extends State<TuristicoPOIPage> {
                   backgroundColor: const Color(0x13313130),
                   elevation: 0,
                   onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPlacePage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPlacePage(foto, titulo, latitud, longitud)));
                   },
                   child: const Image(
                       image: AssetImage("assets/images/pin.png"))),

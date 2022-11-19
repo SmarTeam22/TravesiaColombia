@@ -14,5 +14,11 @@ class LocalLugares extends HiveObject{
   double? calificacion;
   @HiveField(3)
   String? descripcion;
+  @HiveField(4)
+  double? latitud;
+  @HiveField(5)
+  double? longitud;
+
+
 
 }
